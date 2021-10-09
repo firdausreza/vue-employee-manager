@@ -4,7 +4,7 @@
       <li class="collection-header">
         <h4>Employees</h4>
       </li>
-      <li v-for="employee in employees" :key="employee.id" class="collection-item">
+      <li v-for="employee in employees" :key="employee.id" class="collection-item" @dblclick="viewEmployee(employee.employee_id)">
         <div class="chip">
           {{ employee.dept }}
         </div>
@@ -27,7 +27,8 @@ export default {
   name: "Dashboard",
   data() {
     return {
-      employees: []
+      employees: [],
+      employeeID: 0,
     }
   },
   created() {
@@ -51,6 +52,10 @@ export default {
       .catch(err => {
         alert(err.message);
       })
+    },
+    viewEmployee(id) {
+      console.log(id)
+      this.$router.replace({name: 'view-employee', params: { employee_id: id }});
     }
   }
 }

@@ -26,7 +26,10 @@ const routes = [
   {
     path: '/:employee_id',
     name: 'view-employee',
-    component: ViewEmployee
+    component: ViewEmployee,
+    props: {
+      default: true,
+    }
   }
   // {
   //   path: '/about',
