@@ -29,6 +29,16 @@
         {{ employee.position }}
       </li>
     </ul>
+
+    <button class="btn red block" @click="deleteEmployee" style="display: block; width: 100%">
+      Delete
+    </button>
+
+    <div class="fixed-action-btn">
+      <router-link :to="{ name: 'edit-employee', params: { employee_id: employee.employee_id } }" class="btn-floating btn-large red">
+        <font-awesome-icon icon="pencil-alt" />
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -56,6 +66,18 @@ export default {
         }
       })
     })
+  },
+  methods: {
+    deleteEmployee() {
+      const db = firebase.firestore();
+      let confirmation = confirm('Are you sure want to delete this employee data?');
+      if (confirmation === true) {
+        db.collection('employees').doc(this.employee.id).delete().then(() => {
+          alert('Employee deleted successfully')
+        })
+        this.$router.push("/")
+      }
+    }
   }
 }
 </script>

@@ -30,7 +30,6 @@
           </button>
         </div>
       </form>
-      <p>{{ name }} {{ dept }} {{ position }}</p>
     </div>
   </div>
 </template>
